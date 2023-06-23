@@ -9,8 +9,6 @@ function App() {
 
   const [sortBy, setSortBy] = useState({ property: "", isAscending: false });
 
-  console.log("sortby", sortBy);
-
   const snacksBySearch = searchedSnack
     ? snacks.filter(
         (snack) =>
@@ -25,17 +23,17 @@ function App() {
 
   const snacksBySort = (sortBy) =>
     sortBy
-      ? sortBy.property === "ingredient"
+      ? sortBy.property === "ingredients"
         ? sortBy.isAscending
           ? snacksBySearch.sort(
               (a, b) =>
-                a[sortBy.property][0].charCodeAt() -
-                b[sortBy.property][0].charCodeAt()
+                a[sortBy.property][0].toLowerCase().charCodeAt(0) -
+                b[sortBy.property][0].toLowerCase().charCodeAt(0)
             )
           : snacksBySearch.sort(
               (a, b) =>
-                b[sortBy.property][0].charCodeAt() -
-                a[sortBy.property][0].charCodeAt()
+                b[sortBy.property][0].toLowerCase().charCodeAt(0) -
+                a[sortBy.property][0].toLowerCase().charCodeAt(0)
             )
         : sortBy.isAscending
         ? snacksBySearch.sort((a, b) => a[sortBy.property] - b[sortBy.property])
